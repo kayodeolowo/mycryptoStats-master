@@ -5,6 +5,7 @@ import { FaTwitter, FaFacebook, FaReddit, FaGithub } from 'react-icons/fa'
 import DOMPurify from 'dompurify';
 import { useParams } from 'react-router-dom';
 import ClipLoader from 'react-spinners/ClipLoader'
+import Footer from './Footer';
 
 const CoinPage = () => {
   const [coin, setCoin] = useState({});
@@ -44,7 +45,7 @@ const CoinPage = () => {
   return (
     <>
       {loading ? <div className='rounded-div my-12 py-2 px-4 '>
-        <div className='flex max-xl:flex-col max-xl:space-y-4  justify-between  '>
+        <div className='flex max-md:flex-col max-md:space-y-4  justify-between  '>
           <div className='flex flex-row space-x-2 items-center'>
             <img className='w-[3rem] mr-2' src={coin.image?.large} alt="" />
             <div className='flex flex-col  '>
@@ -56,36 +57,37 @@ const CoinPage = () => {
             </div>
           </div>
 
-          <div className=' text-xl font-semibold flex justify-start flex-col'>
+          <div className='text-lg md:text-xl font-semibold flex justify-start max-md:space-x-8 items-center md:flex-col'>
             <p className=' '> Market Cap </p>
             {coin.market_data?.market_cap ? (<p className='text-gray-500'>${coin.market_data.market_cap.usd.toLocaleString()} </p>) : null}
           </div>
 
 
-          <div className=' text-xl font-semibold flex justify-start flex-col'>
+          <div className=' text-lg md:text-xl  font-semibold flex justify-start max-md:space-x-6 items-center md:flex-col'>
             <p className=' '>  24hr Volume </p>
             {coin.market_data?.market_cap ? (<p className='text-gray-500'> ${coin.market_data.total_volume.usd.toLocaleString()} </p>) : null}
           </div>
 
-          <div className=' text-xl font-semibold flex justify-start flex-col'>
-            <p className=' '>  ATH </p>
+          <div className=' text-lg md:text-xl  font-semibold flex justify-start max-md:space-x-4 items-center md:flex-col'>
+            <p className=' '>  All Time High </p>
             {coin.market_data?.market_cap ? (<p className='text-gray-500'> ${coin.market_data.ath.usd.toLocaleString()} </p>) : null}
           </div>
 
-          <div className=' text-xl font-semibold flex justify-start flex-col'>
-            <p className=' '>  ATL </p>
+          <div className=' text-lg md:text-xl  font-semibold flex justify-start max-md:space-x-6 items-center md:flex-col'>
+            <p className=' '>  All Time Low </p>
             {coin.market_data?.market_cap ? (<p className='text-gray-500'> ${coin.market_data.atl.usd.toLocaleString()} </p>) : null}
           </div>
+          
 
 
         </div>
 
-        <hr className='mt-2 mb-6 ' />
+        <hr className='mt-6 mb-6 ' />
 
         <div className='flex flex-col md:flex-row justify-between mt-4 '>
           <div className='md:w-[50%]'>
 
-            <p className='text-center text-2xl mt-3'> 7 Days Chart </p>
+            <p className='text-center text-xl font-semibold mt-3'> 7 Days Chart </p>
             <div className='mt-2'>
               <Sparklines data={coin.market_data?.sparkline_7d.price}>
                 <SparklinesLine color='green' />
@@ -97,7 +99,7 @@ const CoinPage = () => {
 
           </div>
 
-          <div className=' md:w-[45%]'>
+          <div className=' md:w-[45%] max-md:mt-4'>
             {/* <p className='text-2xl font-bold text-center '> Coin Data Info </p> */}
             <div className='flex  flex-col space-y-3'>
 
@@ -162,14 +164,19 @@ const CoinPage = () => {
 
          {/* Description */}
          <div className='py-4 '>
-              <p className='text-xl text-center font-bold'> About {coin.name}</p>
+              <p className='text-xl text-center font-bold mt-4 mb-3'> About {coin.name}</p>
               <p className='text-base text-gray-400' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(coin.description ? coin.description.en : ''), }}></p>
             </div>
+
+            <hr className='mt-10'/>
+
+            <Footer/>
       </div> : <div className="flex flex-col w-fit mx-auto mt-[40%] md:mt-[15%]"  >
 
 
         <ClipLoader speedMultiplier="1" color='yellow' className='' />
 
+                 
       </div>}
     </>
   )

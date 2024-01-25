@@ -4,6 +4,10 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],   
+      },
       backgroundColor : {
         primary : 'var(--color-bg-primary)',
         secondary : 'var(--color-bg-secondary)',

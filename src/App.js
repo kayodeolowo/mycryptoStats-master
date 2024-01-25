@@ -14,15 +14,23 @@ function App() {
    const [loading, setLoading] = useState (false)
    const [currentpage, setCurrentpage] = useState(1)
 
-  const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=${currentpage}&sparkline=true`
+   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=${currentpage}&sparkline=true`;
 
-  useEffect (()=> {
-    axios.get(url).then((response)=> {
-      setCoins(response.data)
-     // console.log(response.data)
-      setLoading(true)
-    })
-  }, [url])
+   const handleNextPage = () => {
+     setCurrentpage((prevPage) => prevPage + 1);
+   };
+ 
+   const handlePrevPage = () => {
+     setCurrentpage((prevPage) => Math.max(prevPage - 1, 1));
+   };
+ 
+   useEffect(() => {
+     setLoading(false); // Set loading to false before making the request
+     axios.get(url).then((response) => {
+       setCoins(response.data);
+       setLoading(true);
+     });
+   }, [url]);
 
   return (
    <ThemeProvider> 
@@ -45,28 +53,15 @@ function App() {
           <FadeLoader speedMultiplier="1"  color='green'  className='' />
          
           </div> }
-        {/* <div className='flex  justify-center mt-4 space-x-4 pb-10'> 
 
-         <button  onClick={ ()=> {
-              if (currentpage ===1) {
-                   return;
-                  } else {
-                    setCurrentpage (currentpage -1 );
-                          }
-                         }} > 
-                        <TbPlayerTrackPrev className='text-yellow-300 font-bold text-2xl sm:text-3xl'> </TbPlayerTrackPrev>
-              </button> 
-                            <h2 className='font-bold text-xl'> {currentpage} </h2>
-
-               <button onClick={()=>setCurrentpage(currentpage+1)}  > 
-                        <TbPlayerTrackNext className='text-yellow-300 font-bold text-2xl sm:text-3xl'> </TbPlayerTrackNext>
-              </button>    
-
-        
-             
-        </div>   
-         */}
-         
+          {/* <div className="flex justify-between mt-4 w-[10rem] mx-auto mb-10">
+          <button onClick={handlePrevPage}>
+            <TbPlayerTrackPrev size={24} />
+          </button>
+          <button onClick={handleNextPage}>
+            <TbPlayerTrackNext size={24} />
+          </button>
+        </div> */}
       </AuthContextProvider>
    </ThemeProvider>
   );

@@ -30,14 +30,15 @@ const Navbar = () => {
         </Link>
 
         <a href='https://kayodeolowo.netlify.app/' target='blank'>
-        <div className=' mt-1 hover:cursor-pointer   rounded-full flex items-center justify-center text-center'>
-           <img src='./images/profile.png'  className='h-6 w-6'/>
+        <div className=' mt-1 hover:cursor-pointer    rounded-full flex items-center justify-center text-center'>
+           {/* <img src='./images/profile.png'  className='h-8 w-8'/> */}
+           <p className='font-bold '>  K.O </p>
         </div>
         </a>
 
-        <div className='hidden md:block'> 
+        {/* <div className='hidden md:block'> 
             <ThemeToggle/>
-        </div>
+        </div> */}
         
         {user?.email ? (
             <div className='hidden md:block'>

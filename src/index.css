@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 :root {
-    @apply bg-primary text-primary
+    @apply bg-primary text-primary font-poppins
 }
 
 .rounded-div {

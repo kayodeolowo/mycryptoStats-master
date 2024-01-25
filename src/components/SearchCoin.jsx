@@ -16,16 +16,16 @@ const SearchCoin = ({coins}) => {
 
             <table className='w-full border-collapse text-center'> 
                 <thead> 
-                    <tr className='border-b'>
+                    <tr className='text-xs sm:text-base border-b'>
                          <th ></th>
                          <th className='px-4'>#</th>
                          <th className='text-left'>Coin</th>
-                         <th></th>
+                         
                          <th>Price</th>
                          <th>24hr</th>
                          <th className='hidden md:table-cell'>24 Volume</th>
-                         <th className='hidden sm:table-cell'> Mkt</th>
-                         <th>Last 7days</th>
+                         <th className='hidden sm:table-cell'> Market Cap</th>
+                         <th>7 days</th>
      
 
                     </tr>    
